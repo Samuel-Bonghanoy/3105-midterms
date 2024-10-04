@@ -10,7 +10,7 @@ export function authMiddleware(
   const authHeader = req.headers.authorization;
 
   if (authHeader) {
-    const token = authHeader.split(' ')[1]; // Bearer <token>
+    const token = authHeader.split(' ')[1];
 
     jwt.verify(token, env.JWT_SECRET, (err, payload) => {
       if (err) {

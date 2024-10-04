@@ -2,14 +2,8 @@ import type { User } from '../types/user';
 
 class UserModel {
   private static instance: UserModel;
-  private users: User[] = [
-    {
-      id: 0,
-      username: 'Sam',
-      password: 'yay',
-      email: 'yay',
-    },
-  ];
+  // In-memory mock database
+  private users: User[] = [];
 
   // Make it so that only one instance of UserModel can be instantiated
   constructor() {
