@@ -23,20 +23,8 @@ class UserModel {
     return user;
   }
 
-  getUser(id: number): User | undefined {
+  getUserById(id: number): User | undefined {
     return this.users.find((user) => user.id === id);
-  }
-
-  updateUser(id: number, newData: Partial<User>): User | undefined {
-    const user = this.getUser(id);
-    if (user) {
-      Object.assign(user, newData);
-    }
-    return user;
-  }
-
-  deleteUser(id: number): void {
-    this.users = this.users.filter((user) => user.id !== id);
   }
 
   getAllUsers(): User[] {
