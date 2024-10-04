@@ -26,7 +26,7 @@ docker compose up
 
 ## Env Variables
 
-Both the JWT_SECRET and PORT env variabled can be configured in the `config/env.ts` file.
+Both the JWT_SECRET and PORT env variables can be configured in the `config/env.ts` file.
 
 ```ts
 // config/env.ts
