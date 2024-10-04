@@ -4,10 +4,8 @@ import { userRouter } from './routes/user.route';
 const app = express();
 const port = 5000;
 
-app.get('/', (req, res) => {
-  res.send('Hello');
-});
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(userRouter);
 
 app.listen(port, () => {

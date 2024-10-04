@@ -1,32 +1,34 @@
 import Joi from 'joi';
-import { genSalt, hash, compare } from 'bcrypt';
+import { genSaltSync, hashSync, compare } from 'bcrypt';
 import { User } from '../models/user.model';
 import jwt, { VerifyErrors } from 'jsonwebtoken';
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
-export async function register(req: Request, res: Response) {
+export function register(req: Request, res: Response) {
   const userSchema = Joi.object({
     username: Joi.string().alphanum().max(30).required(),
     password: Joi.string().required(),
-    email: Joi.string().email({
-      minDomainSegments: 2,
-      tlds: { allow: ['com', 'org'] },
-    }),
+    email: Joi.string()
+      .email({
+        minDomainSegments: 2,
+        tlds: { allow: ['com', 'org'] },
+      })
+      .required(),
   });
 
-  const { error, value } = await userSchema.validate(req.body);
+  const { error, value } = userSchema.validate(req.body);
 
   if (error) {
-    return res.status(400).json({ msg: error.message });
+    res.status(400).json({ msg: error.message });
   } else {
     const { username, password, email } = value;
 
-    const salt = await genSalt();
-    const hashedPassword = await hash(password, salt);
+    const salt = genSaltSync();
+    const hashedPassword = hashSync(password, salt);
 
     const newUser = User.createUser(username, hashedPassword, email);
 
-    return res.status(200).json({
+    res.json({
       msg: 'You have successfully created an account.',
       data: newUser,
     });
