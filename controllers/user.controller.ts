@@ -3,6 +3,7 @@ import { genSaltSync, hashSync, compareSync } from 'bcrypt';
 import { User } from '../models/user.model';
 import jwt, { VerifyErrors } from 'jsonwebtoken';
 import type { Request, Response } from 'express';
+import { env } from '../config/env';
 
 export function register(req: Request, res: Response) {
   const userSchema = Joi.object({
@@ -57,6 +58,18 @@ export function login(req: Request, res: Response) {
 
     if (!compareSync(password, queriedUserDetails.password)) {
       res.status(400).json({ msg: 'Incorrect password. Please try again!' });
+      return;
     }
+
+    const token = jwt.sign(
+      {
+        id: queriedUserDetails.id,
+        username: queriedUserDetails.username,
+        email: queriedUserDetails.email,
+      },
+      env.JWT_SECRET,
+    );
+
+    res.status(200).json({ message: 'Login successful!', data: token });
   }
 }

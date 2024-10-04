@@ -32,10 +32,6 @@ class UserModel {
   findUserByUsername(username: string): User | undefined {
     return this.users.find((user) => user.username === username);
   }
-
-  getAllUsers(): User[] {
-    return this.users;
-  }
 }
 
 const User = new UserModel();
