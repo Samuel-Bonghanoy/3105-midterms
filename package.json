@@ -26,7 +26,11 @@
     "typescript": "^5.6.2"
   },
   "dependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.7",
     "3105-midterms": "file:",
-    "express": "^4.21.0"
+    "bcrypt": "^5.1.1",
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2"
   }
 }

@@ -2,9 +2,16 @@ import type { User } from '../types/user';
 
 class UserModel {
   private static instance: UserModel;
-  private users: User[] = [];
+  private users: User[] = [
+    {
+      id: 1,
+      username: 'Sam',
+      password: 'yay',
+      email: 'yay',
+    },
+  ];
 
-  private constructor() {
+  constructor() {
     if (UserModel.instance) {
       return UserModel.instance;
     }
@@ -32,4 +39,6 @@ class UserModel {
   }
 }
 
-export { UserModel };
+const User = new UserModel();
+
+export { User };
