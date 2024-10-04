@@ -2,9 +2,11 @@ import express from 'express';
 import { userRouter } from './routes/user.route';
 import { env } from './config/env';
 import { loggerMiddleware } from './middleware/loggerMiddleware';
+import { limiter } from './middleware/rateLimitMiddleware';
 
 const app = express();
 
+app.use(limiter);
 app.use(loggerMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
