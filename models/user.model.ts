@@ -11,6 +11,7 @@ class UserModel {
     },
   ];
 
+  // Make it so that only one instance of UserModel can be instantiated
   constructor() {
     if (UserModel.instance) {
       return UserModel.instance;
@@ -28,8 +29,8 @@ class UserModel {
     return user;
   }
 
-  getUserById(id: number): User | undefined {
-    return this.users.find((user) => user.id === id);
+  findUserByUsername(username: string): User | undefined {
+    return this.users.find((user) => user.username === username);
   }
 
   getAllUsers(): User[] {
