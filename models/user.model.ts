@@ -32,6 +32,10 @@ class UserModel {
   findUserByUsername(username: string): User | undefined {
     return this.users.find((user) => user.username === username);
   }
+
+  findUserById(id: number): User | undefined {
+    return this.users.find((user) => user.id === id);
+  }
 }
 
 const User = new UserModel();

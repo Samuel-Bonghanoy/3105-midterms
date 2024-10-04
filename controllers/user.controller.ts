@@ -73,3 +73,16 @@ export function login(req: Request, res: Response) {
     res.status(200).json({ message: 'Login successful!', data: token });
   }
 }
+
+export function findUser(req: Request, res: Response) {
+  const { id } = res.locals.decodedToken;
+
+  const user = User.findUserById(id);
+
+  if (!user) {
+    res.status(404).json({ msg: `User with ID ${id} not found!` });
+    return;
+  }
+
+  res.json({ msg: 'Successfully found user', data: user });
+}
