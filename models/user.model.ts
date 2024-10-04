@@ -4,7 +4,7 @@ class UserModel {
   private static instance: UserModel;
   private users: User[] = [
     {
-      id: 1,
+      id: 0,
       username: 'Sam',
       password: 'yay',
       email: 'yay',
@@ -19,14 +19,12 @@ class UserModel {
     UserModel.instance = this;
   }
 
-  createUser(
-    id: number,
-    username: string,
-    password: string,
-    email: string,
-  ): User {
+  createUser(username: string, password: string, email: string): User {
+    const id = this.users.length;
+
     const user: User = { id, username, password, email };
     this.users.push(user);
+
     return user;
   }
 
