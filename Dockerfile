@@ -2,11 +2,13 @@ FROM node
 
 WORKDIR /usr/src/app
 
-COPY package*.json .
+COPY --chown=node:node package*.json .
 
 RUN npm i
 
-COPY . .
+COPY --chown=node:node . .
+
+USER node:node
 
 EXPOSE 4200
 
