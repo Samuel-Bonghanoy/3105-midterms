@@ -7,8 +7,7 @@ userRouter.post('/register', register);
 
 userRouter.get('/user/:id', (req, res) => {
   // const user = User.getUserById(1);
-
-  res.status(200).json({ data: user });
+  // res.status(200).json({ data: user });
 });
 
 export { userRouter };
