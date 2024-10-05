@@ -7,7 +7,7 @@ import { rateLimitMiddleware } from './middleware/rateLimitMiddleware';
 const app = express();
 
 // MIDDLEWARE
-// app.use(rateLimitMiddleware);
+app.use(rateLimitMiddleware);
 app.use(loggerMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
